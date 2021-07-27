@@ -130,7 +130,7 @@ class pixel_classifier(nn.Module):
 def prepare_stylegan(args):
 
     if args['stylegan_ver'] == "1":
-        if args['category'] == "car":
+        if args['category'] == "car" or args['category'] == "car_29":
             resolution = 512
             max_layer = 8
         elif  args['category'] == "face":
@@ -193,6 +193,8 @@ def prepare_stylegan(args):
 
 def generate_data(args, checkpoint_path, num_sample, start_step=0, vis=True):
     if args['category'] == 'car':
+        from utils.data_util import car_20_palette as palette
+    elif args['category'] == 'car_29':
         from utils.data_util import car_20_palette as palette
     elif args['category'] == 'face':
         from utils.data_util import face_palette as palette
@@ -436,6 +438,8 @@ def main(args
          ):
 
     if args['category'] == 'car':
+        from utils.data_util import car_20_palette as palette
+    elif args['category'] == 'car_29':
         from utils.data_util import car_20_palette as palette
     elif args['category'] == 'face':
         from utils.data_util import face_palette as palette
